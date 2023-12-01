@@ -1,0 +1,43 @@
+﻿@using MemberDao;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="text-center">
+    <h1>@ViewBag.Title</h1>
+</div>
+
+<div>
+    <a href="/Member/Add" class="btn btn-success"><i class="fa fa-user-plus"></i> Add Member</a>
+</div>
+
+<!--  ViewBag.Member -->
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Active</th>
+            <th>&nbsp;</th> <!-- blank heading -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Member member in ViewBag.members)
+        {
+            <tr>
+                <td><a href="/Member/Detail/@member.Id">@member.Id</a</td>
+                <td>@member.Name</td>
+                <td>@member.Email</td>
+                <td>@(member.Active ? "Active" : "Inactive")</td>
+                <td>
+                    <a href="/Member/ConfirmDelete/@member.Id" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+                    <a href="/Member/Edit/@member.Id" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

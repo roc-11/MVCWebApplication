@@ -1,0 +1,47 @@
+﻿@using MemberDao;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+    Member member = ViewBag.member;
+}
+
+<div class="text-center">
+    <h2>@ViewBag.Title</h2>
+</div>
+
+<form action="@ViewBag.Action" method="post">
+    <div class="mb-3">
+        <label class="form-label" for="id" hidden>ID</label>
+        <input type="hidden" name="id" id="id"
+               class="form-control" value="@member.Id" READONLY />
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="name">Name</label>
+        <input name="name" id="name" placeholder="Enter name" 
+            class="form-control" value="@member.Name" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="email" id="email">Email</label>
+        <input name="email" type="email" placeholder="Enter email address"
+               value="@member.Email" class="form-control" required />
+    </div>
+
+    <!-- 
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="active" />
+        <label class="form-check-label" for="active">Active</label>
+    </div>
+    -->
+
+    <div class="mb-3 form-check">
+
+        @Html.CheckBox("active", @member.Active)
+        <label class="form-check-label" for="active">Active</label>
+    </div>
+
+    <input type="submit" value="@ViewBag.ButtonLabel" class="btn btn-success" />
+    <a href="/Member" class="btn btn-secondary"><i class="fa fa-users"></i> Back to Members</a>
+</form>
